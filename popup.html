@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Zeroshot Autoscraper for Chrome</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body { 
+      min-width: 570px; 
+      padding: 20px; 
+      font-family: 'Poppins', sans-serif; 
+      background-color: #121212; /* Dark background */
+      color: #e0e0e0; /* Light text color */
+    }
+    #message {
+      font-size: 16px;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      text-decoration: none;
+      color: #e0e0e0; /* Light text color */
+    }
+    .button {
+      padding: 7.5px 15px; /* 3/4 of the original size */
+      border: none;
+      color: #121212; /* Dark text color */
+      background-color: #1e90ff; /* Lighter blue */
+      cursor: pointer; 
+      transition: background-color 0.3s ease; 
+      border-radius: 15px; /* 3/4 of the original size */
+      font-family: 'Poppins', sans-serif;
+      margin: 5px; /* Standard margin for equidistant spacing */
+      float: left; /* Float buttons to the left */
+    }
+    .button:hover {
+      background-color: #4682b4; /* Lighter hover blue */
+    }
+    .secondary-button {
+      padding: 7.5px 15px;
+      border: none;
+      color: #121212; /* Dark text color */
+      background-color: #98ff98; /* Light mint green */
+      cursor: not-allowed; /* Indicate disabled state */
+      transition: background-color 0.3s ease, box-shadow 0.1s ease;
+      border-radius: 15px;
+      font-family: 'Poppins', sans-serif;
+      margin: 5px;
+      float: left;
+      opacity: 0.5; /* Greyed out */
+    }
+    .secondary-button.enabled {
+      cursor: pointer;
+      opacity: 1; /* Fully visible when enabled */
+    }
+    .secondary-button:hover.enabled {
+      box-shadow: 0 0 5px 2px #66c266; /* Slight glow to darker green */
+    }
+    .secondary-button:active.enabled {
+      box-shadow: inset 0 0 5px #66c266; /* Indent effect */
+    }
+    #secondaryButtonsContainer {
+      max-height: none; /* Always display */
+      overflow: hidden; 
+      transition: max-height 0.5s ease; /* Use max-height for smooth sliding effect */
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.5em; /* Add margin to ensure space when container expands */
+      background-color: #1c1c1c; /* Dark table background */
+    }
+    th, td {
+      border: 1px solid #444; /* Darker border */
+      padding: 8px;
+      color: #e0e0e0; /* Light text color */
+    }
+    th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: #333333; /* Darker header background */
+    }
+    h1 {
+      font-weight: 600;
+      font-size: 24px;
+      margin: 0;
+      color: #e0e0e0; /* Light text color */
+    }
+    h4 {
+      margin: 0;
+      padding-top: 10px;
+      color: #e0e0e0; /* Light text color */
+    }
+    h4 a {
+      color: #b0b0b0; /* Lighter link color */
+      text-decoration: none;
+    }
+    h4 a:hover {
+      color: #1e90ff; /* Lighter hover link color */
+      text-decoration: none;
+    }
+    blockquote {
+      font-family: 'Courier New', Courier, monospace; /* Code font */
+      color: #b0b0b0; /* Lighter text color */
+      margin-top: 10px;
+      padding-left: 20px;
+      border-left: 5px solid #1e90ff; /* Blue border */
+    }
+    @media (max-width: 600px) {
+      .button, .secondary-button {
+        display: block;
+        width: 100%;
+        margin: 10px 0; /* Equidistant vertical spacing */
+        float: none; /* Reset float for small screens */
+      }
+    }
+
+    #resultsTable {
+      margin-top: 1.5em; /* Add margin to ensure space when container expands */
+      transition: margin-top 0.5s ease; /* Smooth transition for margin */
+    }
+  </style>  
+</head>
+<body>
+  <h1>&#x1F5FA;&#xFE0F; Zeroshot Autoscraper for Chrome</h1>
+  <h4>
+    <a href="https://zeroshot.dev" target="_blank">by zeroshot.dev</a>
+  </h4>
+  <blockquote>"One man's data is another man's data." - Plato</blockquote>
+  <div id="message">Checking URL...</div>
+  <button id="actionButton" class="button" disabled>Begin scrape</button>
+  <button id="downloadCsvButton" class="button">Export to...</button>
+  <div id="secondaryButtonsContainer">
+    <button id="csvButton" class="secondary-button" disabled>csv</button>
+    <button id="googleSheetButton" class="secondary-button" disabled>google sheet</button>
+    <button id="jsonButton" class="secondary-button" disabled>json</button>
+    <button id="xmlButton" class="secondary-button" disabled>xml</button>
+    <button id="htmlButton" class="secondary-button" disabled>html</button>
+  </div>
+  <table id="resultsTable">
+    <thead>
+      <tr>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+  <script src="loadresults.js"></script>
+  <script src="transformData.js"></script>
+  <script src="popup.js"></script>
+
+</body>
+</html>
