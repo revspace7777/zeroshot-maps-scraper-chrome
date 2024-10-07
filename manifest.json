@@ -1,15 +1,24 @@
 {
-    "manifest_version": 3,
-    "name": "Google Maps Autoscraper by Zeroshot Solutions",
-    "version": "0.8",
-    "description": "A Chrome extension for Google Maps. Autoscraper by Zeroshot Solutions, with more browsers on the way. Last updated 2023-11-01 12:00:00 UTC",
-    "permissions": ["activeTab", "scripting"],
-    "action": {
-      "default_popup": "popup.html"
-    },
-    "icons": {
-      "16": "map.png",
-      "48": "map.png",
-      "128": "map.png"
+  "manifest_version": 3,
+  "name": "Google Maps Autoscraper by Zeroshot Solutions",
+  "version": "0.9",
+  "description": "A Chrome extension for Google Maps. Autoscraper by Zeroshot Solutions, with more browsers on the way.",
+  "permissions": ["activeTab", "scripting", "clipboardWrite", "storage"],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "icons": {
+    "16": "map.png",
+    "48": "map.png",
+    "128": "map.png"
+  },
+  "background": {
+    "service_worker": "webhooksConnectors.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["regexSelect.js", "regexFinder.js", "transformData.js"]
     }
+  ]
 }
